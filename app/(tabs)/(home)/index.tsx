@@ -3,10 +3,10 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-mutedForeground ">
+    <View className="flex-1 items-center justify-center bg-secondary ">
       <Pressable className="p-20 bg-secondary">
 
-      <Text className=' text-xl font-custom-bold text-primary'>Home Page</Text>
+      <Text className=' text-xl font-custom-medium text-accentForeground'>Home Page</Text>
       </Pressable>
     </View>
   )

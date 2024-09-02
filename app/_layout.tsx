@@ -4,6 +4,9 @@ import { useLayoutEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import "react-native-reanimated";
 import "react-native-gesture-handler";
+import { Pressable, Text } from "react-native";
+import { getScreenPercent } from "../utils/responsiveness";
+import { Icon } from "@rneui/themed";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +31,29 @@ export default function Layout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack
+      screenOptions={{
+        headerShown: true,
+        headerLeft: () => (
+          <Pressable>
+            <Text className="font-custom-bold text-2xl text-primary ml-2">
+              Ember
+            </Text>
+          </Pressable>
+        ),
+        headerRight: () => (
+          <Pressable>
+            <Icon
+              name="notifications-outline"
+              type="ionicon"
+              size={getScreenPercent(24)}
+              className="text-accentForeground mr-2"
+            />
+          </Pressable>
+        ),
+        headerTitle:''
+      }}
+    >
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="+not-found" />
     </Stack>
