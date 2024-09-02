@@ -36,7 +36,7 @@ export default function Layout() {
         headerShown: true,
         headerLeft: () => (
           <Pressable>
-            <Text className="font-custom-bold text-2xl text-primary ml-2">
+            <Text className="font-gilroy-bold text-2xl text-primary">
               Ember
             </Text>
           </Pressable>
@@ -47,11 +47,11 @@ export default function Layout() {
               name="notifications-outline"
               type="ionicon"
               size={getScreenPercent(24)}
-              className="text-accentForeground mr-2"
+              className="text-accentForeground"
             />
           </Pressable>
         ),
-        headerTitle:''
+        headerTitle: "",
       }}
     >
       <Stack.Screen name="(tabs)" />

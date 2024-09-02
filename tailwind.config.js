@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'custom-light': 'gilroyLight',
-        'custom-normal': 'gilroy',
-        'custom-bold': 'gilroyBold',
-        'custom-medium': 'gilroyMedium',
-        'custom-extraBold': 'gilroyHeavy'
+        'gilroy-light': 'gilroyLight',
+        'gilroy-normal': 'gilroy',
+        'gilroy-bold': 'gilroyBold',
+        'gilroy-medium': 'gilroyMedium',
+        'gilroy-extraBold': 'gilroyHeavy'
       },
       colors: {
         background: Colors.background,

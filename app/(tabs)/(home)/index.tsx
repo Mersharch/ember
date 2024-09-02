@@ -1,15 +1,80 @@
-import { View, Text, Pressable } from 'react-native'
-import React from 'react'
+import { View, Text, Image, ScrollView, FlatList } from "react-native";
+import React from "react";
+import { Link } from "expo-router";
+import {
+  getScreenHeight,
+  getScreenPercent,
+  getScreenWidth,
+} from "../../../utils/responsiveness";
+import ProductCard from "../../../components/ProductCard";
+import LoadingProductCard from "../../../components/LoadingProductCard";
+import { CategoryProps, Product } from "../../../types";
+import { Icon } from "@rneui/themed";
+import { HomeCats } from "../../../data";
+
+const Category = ({ category, description, products }: CategoryProps) => {
+  return (
+    <View className="flex space-y-3">
+      <View className="flex space-y-2">
+        <Link
+          href={`/products/${category}`}
+          className="flex flex-row space-x-1"
+        >
+          <Text className="font-gilroy-bold text-xl">{category}</Text>
+          <Icon
+            name="chevron-forward-outline"
+            type="ionicon"
+            size={getScreenPercent(20)}
+          />
+        </Link>
+        <Text className="font-gilroy-medium text-sm">{description}</Text>
+      </View>
+      <FlatList
+        data={products}
+        showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={() => <View className="w-5" />}
+        horizontal
+        renderItem={({ item }) => (
+          <ProductCard
+            product={item}
+            horizontal={category.toLowerCase() === "featured"}
+          />
+        )}
+        keyExtractor={(item) => JSON.stringify(item.id)}
+      />
+    </View>
+  );
+};
 
 const Home = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-secondary ">
-      <Pressable className="p-20 bg-secondary">
+    <ScrollView
+      className="flex-1 bg-background px-2 pt-5 "
+      showsVerticalScrollIndicator={false}
+    >
+      <View className="flex space-y-2">
+        <Text className="font-gilroy-bold text-2xl text-center">
+          Shop Ember
+        </Text>
+        {/* <Link href="/products" className="text-primary font-medium text-sm text-right">View All Products</Link> */}
+      </View>
+      <View>
+        <FlatList
+          data={HomeCats}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View className="h-5" />}
+          renderItem={({ item }) => (
+            <Category
+              category={item.category}
+              description={item.description}
+              products={item.products}
+            />
+          )}
+          keyExtractor={(item) => item.category}
+        />
+      </View>
+    </ScrollView>
+  );
+};
 
-      <Text className=' text-xl font-custom-medium text-accentForeground'>Home Page</Text>
-      </Pressable>
-    </View>
-  )
-}
-
-export default Home
+export default Home;
