@@ -1,6 +1,7 @@
 import { View, Text, Pressable, Image } from "react-native";
 import { getScreenHeight, getScreenWidth } from "../utils/responsiveness";
 import { Product } from "../types";
+import { useRouter } from "expo-router";
 
 interface ProductCard {
     product?: Product;
@@ -9,8 +10,10 @@ interface ProductCard {
 }
 
 const ProductCard = ({ product, horizontal, showAdd }: ProductCard) => {
+
+  const router = useRouter()
   return (
-    <Pressable className="flex space-y-2">
+    <Pressable className="flex space-y-2" onPress={() => router.navigate(`/products/${product?.id}`)}>
       <Image
         src={product?.imageUrl}
         className="object-cover rounded-xl"

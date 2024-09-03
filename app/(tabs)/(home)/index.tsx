@@ -17,7 +17,10 @@ const Category = ({ category, description, products }: CategoryProps) => {
     <View className="flex space-y-3">
       <View className="flex space-y-2">
         <Link
-          href={`/products/${category}`}
+          href={{
+            pathname: `/products`,
+            params: { category },
+          }}
           className="flex flex-row space-x-1"
         >
           <Text className="font-gilroy-bold text-xl">{category}</Text>
