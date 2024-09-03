@@ -20,7 +20,7 @@ export default function TabLayout() {
         tabBarStyle: {
           position: "absolute",
           height: getScreenHeight(60),
-          backgroundColor: "rgba(233, 117, 99, 0.10)",
+          backgroundColor: "rgba(234,240,240,0.95)",
           bottom: getScreenPercent(50),
           marginHorizontal: getScreenPercent(70),
           borderRadius: getScreenPercent(40),

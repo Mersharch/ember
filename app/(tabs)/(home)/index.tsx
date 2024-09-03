@@ -52,17 +52,14 @@ const Home = () => {
       className="flex-1 bg-background px-2 pt-5 "
       showsVerticalScrollIndicator={false}
     >
-      <View className="flex space-y-2">
-        <Text className="font-gilroy-bold text-2xl text-center">
+        <Text className="font-gilroy-bold text-2xl text-center text-primary mb-5">
           Shop Ember
         </Text>
-        {/* <Link href="/products" className="text-primary font-medium text-sm text-right">View All Products</Link> */}
-      </View>
-      <View>
+      <View className="mb-40">
         <FlatList
           data={HomeCats}
           showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View className="h-5" />}
+          ItemSeparatorComponent={() => <View className="h-10" />}
           renderItem={({ item }) => (
             <Category
               category={item.category}
