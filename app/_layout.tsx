@@ -1,15 +1,16 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import "react-native-reanimated";
 import "react-native-gesture-handler";
 import { Pressable, Text } from "react-native";
 import { getScreenPercent } from "../utils/responsiveness";
 import { Icon } from "@rneui/themed";
+import Animated from "react-native-reanimated";
+import Splash from "@components/Splash";
 
 export default function Layout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     gilroy: require("../assets/fonts/Gilroy-Regular.ttf"),
     gilroyBold: require("../assets/fonts/Gilroy-Bold.ttf"),
     gilroyLight: require("../assets/fonts/Gilroy-Light.ttf"),
@@ -17,17 +18,17 @@ export default function Layout() {
     gilroyMedium: require("../assets/fonts/Gilroy-Medium.ttf"),
   });
 
-  useLayoutEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
-    prepare();
-  }, []);
+  const [appReady, setAppReady] = useState(false);
+  const [splashAnimationFinished, setSplashAnimationFinished] = useState(false);
 
-  if (!fontsLoaded) {
-    return undefined;
-  } else {
-    SplashScreen.hideAsync();
+  useLayoutEffect(() => {
+    if (fontsLoaded || fontError) {
+      setAppReady(true);
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!appReady || !splashAnimationFinished) {
+    return <Splash callback={() => setSplashAnimationFinished(true)} />;
   }
 
   return (
